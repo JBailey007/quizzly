@@ -8,7 +8,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./assets/css/style.css">
     </head>
+    <!-- I want to create a webpage that will go through a series of questions that will allow us to view highscores in the top left and a timer that is counting down in the top right. -->
     <body>
+        <banner>
+            <p class="highscores">View Highscores</p>
+            <p class="timer">Time</p>
+        </banner>
+        <main>
+            <div id="main-box">
+                <h1>Feeling Quizzly?</h1>
+                <p>Try to answer the following questions within the time limit that you are given. Keep in mind that choosing an incorrect answer will result in time being removed from the timer by ten seconds.</p>
+                <button>Start Quiz</button>
+                <div class="questions" id="question-box">                
+                <!-- this will contain the Questions to choose from -->
+            </div>
+            <div class="Options" id="options-box">
+                <!-- this will contain the Options to choose from -->
+            </div>
+            </div>
+        </main>
         <script src="./assets/js/script.js"></script>
     </body>
 </html>
