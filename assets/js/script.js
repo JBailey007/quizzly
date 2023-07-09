@@ -1,8 +1,8 @@
-const startButton = document.getElementById("start-btn")
-const nextButton = document.getElementById("next-btn")
-const questionContainerElement = document.getElementById("question-container")
-const questionElement = document.getElementById("questions")
-const answerButtonsElement = document.getElementById("answer-buttons")
+var startButton = document.getElementById("start-btn")
+var nextButton = document.getElementById("next-btn")
+var questionContainerElement = document.getElementById("question-container")
+var questionElement = document.getElementById("questions")
+var answerButtonsElement = document.getElementById("answer-buttons")
 var correctText = document.getElementById("text-correct")
 
 let shuffledQuestions, currentQuestionsIndex
@@ -36,7 +36,7 @@ function resetState() {
 function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach( answer => {
-        const button = document.createElement("button")
+        var button = document.createElement("button")
         button.innerText = answer.text
         button.classList.add("btn")
         if (answer.correct) {
@@ -48,13 +48,18 @@ function showQuestion(question) {
 }
 
 function selectAnswer(i) {
-    const selectedButton = i.target
-    const correct = selectedButton.dataset.correct
+    var selectedButton = i.target
+    var correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-    nextButton.classList.remove("hide");
+    if (shuffledQuestions.length > currentQuestionsIndex + 1) {
+        nextButton.classList.remove("hide")
+    } else {
+        startButton.innerText = "Show HighScores"
+        startButton.classList.remove("hide")
+    }
 }
 
 function setStatusClass(element, correct) {
@@ -71,7 +76,7 @@ function clearStatusClass(element) {
     element.classList.remove("wrong")
 }
 
-const question = [
+var question = [
     {
         question: "Javascript is an _______ language?",
         answers: [
@@ -80,5 +85,32 @@ const question = [
             {text: "Procedural", correct: false}, 
             {text: "None of the Above", correct: false}  
         ]
-    }
+    }, 
+    {
+        question: "Which of the following keywords is used to define a variable in Javascript?",
+        answers: [
+            {text: "var", correct: false }, 
+            {text: "let", correct: false},
+            {text: "Both A and B", correct: true}, 
+            {text: "None of the Above", correct: false}  
+        ]
+    },     
+    {
+        question: "Which of the following methods can be used to display data in some form using Javascript?",
+        answers: [
+            {text: "document.write", correct: false }, 
+            {text: "console.log", correct: false},
+            {text: "window.alert", correct: false}, 
+            {text: "All of the Above", correct: true}  
+        ]
+    },     
+    {
+        question: "Which of the following methods is used to access HTML elements using Javascript?",
+        answers: [
+            {text: "getElementbyId()", correct: false }, 
+            {text: "getElementByClassName()", correct: false},
+            {text: "Both A and B", correct: true}, 
+            {text: "None of the Above", correct: false}  
+        ]
+    }   
 ]
