@@ -3,7 +3,7 @@ const nextButton = document.getElementById("next-btn")
 const questionContainerElement = document.getElementById("question-container")
 const questionElement = document.getElementById("questions")
 const answerButtonsElement = document.getElementById("answer-buttons")
-const correctText = document.getElementById("text-correct")
+var correctText = document.getElementById("text-correct")
 
 let shuffledQuestions, currentQuestionsIndex
 
@@ -50,12 +50,25 @@ function showQuestion(question) {
 function selectAnswer(i) {
     const selectedButton = i.target
     const correct = selectedButton.dataset.correct
-    if (correct) {
-        correctText.classList.remove("hide")
-        correctText.innerText = "correct"        
-    }
-    // Else remove time from the timer that you are going to create
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+    nextButton.classList.remove("hide");
+}
 
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add("correct")
+    } else {  // Else remove time from the timer that you are going to create
+        element.classList.add("wrong")
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove("correct")
+    element.classList.remove("wrong")
 }
 
 const question = [
