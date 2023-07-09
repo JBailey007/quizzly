@@ -3,30 +3,35 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Quizzly</title>
+        <title>Quiz App</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./assets/css/style.css">
     </head>
-    <!-- I want to create a webpage that will go through a series of questions that will allow us to view highscores in the top left and a timer that is counting down in the top right. -->
     <body>
-        <banner>
-            <p class="highscores">View Highscores</p>
-            <p class="timer">Time</p>
-        </banner>
-        <main>
-            <div id="main-box">
-                <h1>Feeling Quizzly?</h1>
-                <p>Try to answer the following questions within the time limit that you are given. Keep in mind that choosing an incorrect answer will result in time being removed from the timer by ten seconds.</p>
-                <button>Start Quiz</button>
-                <div class="questions" id="question-box">                
-                <!-- this will contain the Questions to choose from -->
+    <header>
+        <div class="title">Quizzly Application</div>
+    </header>
+    <main>
+        <div class="container">
+            <div id="question-container" class="hide">
+                <div id="questions">Question</div>
+                <div id="answer-buttons" class="btn-column">
+                    <button class="btn">Answer 1</button>
+                    <button class="btn">Answer 2</button>
+                    <button class="btn">Answer 3</button>
+                    <button class="btn">Answer 4</button>
+                    <!-- <div> -->
+                    <p id="text-correct hide">Correct</p>
+                    <!-- </div> -->
+                </div>
             </div>
-            <div class="Options" id="options-box">
-                <!-- this will contain the Options to choose from -->
+            <div class="controls">
+                <button id="start-btn" class="start-btn btn">Start</button>
+                <button id="next-btn" class="next-btn btn hide">Next</button>
             </div>
-            </div>
-        </main>
+        </div>
+    </main>
         <script src="./assets/js/script.js"></script>
     </body>
 </html>
