@@ -1,18 +1,39 @@
-var startButton = document.getElementById("start-btn")
-var nextButton = document.getElementById("next-btn")
-var questionContainerElement = document.getElementById("question-container")
-var questionElement = document.getElementById("questions")
-var answerButtonsElement = document.getElementById("answer-buttons")
-var correctText = document.getElementById("text-correct")
+var startButton = document.getElementById("start-btn");
+var nextButton = document.getElementById("next-btn");
+var questionContainerElement = document.getElementById("question-container");
+var questionElement = document.getElementById("questions");
+var answerButtonsElement = document.getElementById("answer-buttons");
+var correctText = document.getElementById("text-correct");
+var counting = document.getElementById("timer");
+
 
 let shuffledQuestions, currentQuestionsIndex
 
+//Add Countdown
+let time = 1;
+let quizTimeInMinutes = time * 60 * 60;
+let quizTime = quizTimeInMinutes / 60;
+
+function startCountdown() {
+    let quizTimer = setInterval(function() {
+        if (quizTime <= 0) {
+            clearInterval(quizTimer);
+        } else {
+            quizTime--;
+            let sec = Math.floor(quizTime % 60);
+            let min = Math.floor(quizTime / 60) % 60;
+            counting.innerHTML = `TIME ${min} : ${sec}`;
+        }
+    }, 1000)
+};
+//start button event listeners
 startButton.addEventListener("click", startGame)
+startButton.addEventListener("click", startCountdown)
 nextButton.addEventListener("click" , () => {
     currentQuestionsIndex++
     setNextQuestion()
 })
-
+//startgame function that will start off the game
 function startGame() {
 startButton.classList.add("hide");
 shuffledQuestions = question.sort(() => Math.random() - .5)
@@ -46,7 +67,7 @@ function showQuestion(question) {
         answerButtonsElement.appendChild(button)
         })
 }
-
+//selecting the answers that were provided and hiding/adding classes when needed. 
 function selectAnswer(i) {
     var selectedButton = i.target
     var correct = selectedButton.dataset.correct
@@ -61,7 +82,7 @@ function selectAnswer(i) {
         startButton.classList.remove("hide")
     }
 }
-
+//adding correct and incorrect classes when a button is selected. 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -75,7 +96,7 @@ function clearStatusClass(element) {
     element.classList.remove("correct")
     element.classList.remove("wrong")
 }
-
+//questions for the quiz. 
 var question = [
     {
         question: "Javascript is an _______ language?",

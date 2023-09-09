@@ -18,6 +18,11 @@ html {
     color: black;
 }
 
+#timer {
+    text-align: right;
+    color: white;
+}
+
 .container {
     width: 800px;
     max-width: 80%;
